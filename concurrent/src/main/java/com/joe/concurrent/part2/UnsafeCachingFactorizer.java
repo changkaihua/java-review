@@ -21,18 +21,20 @@ import java.util.concurrent.atomic.AtomicReference;
 public class UnsafeCachingFactorizer extends GenericServlet implements Servlet {
 
     private final AtomicReference<BigInteger> lastNumber
-            = new AtomicReference<BigInteger>();
+            = new AtomicReference<>();
 
     private final AtomicReference<BigInteger[]> lastFactors
-            = new AtomicReference<BigInteger[]>();
+            = new AtomicReference<>();
 
     @Override
     public void service(ServletRequest req, ServletResponse resp) {
         BigInteger i = extractFromRequest(req);
+        // 竟态条件, get 是原子的, 但是 i.equals() 的 i 就不一定了
         if (i.equals(lastNumber.get())) {
             encodeIntoResponse(resp, lastFactors.get());
         } else {
             BigInteger[] factors = factor(i);
+            // 竟态条件, 虽然每个操作是原子的, 每个set是安全的, 但是合起来就不一定了, 可能只更新了一个值然后被中断
             lastNumber.set(i);
             lastFactors.set(factors);
             encodeIntoResponse(resp, factors);

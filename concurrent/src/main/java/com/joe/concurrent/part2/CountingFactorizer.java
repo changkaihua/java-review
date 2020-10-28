@@ -18,6 +18,10 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 @ThreadSafe
 public class CountingFactorizer extends GenericServlet implements Servlet {
+
+    /**
+     * 原子类变量, 利用CAS原理实现
+     */
     private final AtomicLong count = new AtomicLong(0);
 
     public long getCount() {
@@ -28,6 +32,8 @@ public class CountingFactorizer extends GenericServlet implements Servlet {
     public void service(ServletRequest req, ServletResponse resp) {
         BigInteger i = extractFromRequest(req);
         BigInteger[] factors = factor(i);
+
+        // 原子操作
         count.incrementAndGet();
         encodeIntoResponse(resp, factors);
     }
