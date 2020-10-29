@@ -11,6 +11,7 @@
         <module>basic</module>
         <module>jvm</module>
         <module>concurrent</module>
+        <module>algorithm</module>
     </modules>
     <packaging>pom</packaging>
 
