@@ -18,11 +18,13 @@ public class NQueens {
     List<List<String>> res = new ArrayList<>();
 
     public List<List<String>> solveNQueens(int n) {
+        // init the board
         char[][] board = new char[n][n];
         for (int i = 0; i < n; i++) {
             Arrays.fill(board[i], '.');
         }
 
+        // back track
         backtrack(board, 0);
 
         return res;
