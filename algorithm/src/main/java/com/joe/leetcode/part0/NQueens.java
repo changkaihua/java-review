@@ -1,4 +1,4 @@
-package com.joe.leetcode;
+package com.joe.leetcode.part0;
 
 import java.util.*;
 
@@ -39,6 +39,7 @@ public class NQueens {
         }
         int columns = board[row].length;
         for (int column = 0; column < columns; column++) {
+            // 剪支
             if (!isValid(board, row, column)) continue;
             board[row][column] = 'Q';
             backtrack(board, row + 1);

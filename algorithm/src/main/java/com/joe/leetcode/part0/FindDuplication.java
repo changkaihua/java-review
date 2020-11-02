@@ -1,4 +1,4 @@
-package com.joe.leetcode;
+package com.joe.leetcode.part0;
 
 /**
  * 面试题3（二）：不修改数组找出重复的数字
