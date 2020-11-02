@@ -26,6 +26,7 @@ public class CellularAutomata {
                 });
         this.workers = new Worker[count];
         for (int i = 0; i < count; i++)
+            // 分解为子问题的部分
             workers[i] = new Worker(mainBoard.getSubBoard(count, i));
     }
 
@@ -56,7 +57,9 @@ public class CellularAutomata {
     }
 
     public void start() {
-        for (Worker worker : workers) new Thread(worker).start();
+        for (Worker worker : workers) {
+            new Thread(worker).start();
+        }
         mainBoard.waitForConvergence();
     }
 
