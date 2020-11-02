@@ -24,11 +24,13 @@ public class StuffIntoPublicTest {
 
         /*
         The reason why this is possible is that Java has a weak memory model
-            thread1:
+
+        thread1: someStaticVariable = new Holder(42);
             1. Alloc memory to pointer1 of holder
             2. Write 42 to pointer1 at offset 0
             3. Write pointer1 to someStaticVariable
-            can be see as thread2:
+
+        can be see as thread2: someStaticVariable.assertSanity(); // can throw
             1. Alloc Memory to pointer1 of holder
             2. Write pointer1 to someStaticVariable
             3. Write 42 to pointer1 at offset 0

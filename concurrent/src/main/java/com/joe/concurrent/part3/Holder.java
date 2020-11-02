@@ -6,6 +6,8 @@ package com.joe.concurrent.part3;
  * Class at risk of failure if not properly published
  *
  * @author Brian Goetz and Tim Peierls
+ * <p>
+ * 该类没有问题
  */
 public class Holder {
     private int n;
