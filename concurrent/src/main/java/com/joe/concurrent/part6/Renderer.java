@@ -21,10 +21,11 @@ public abstract class Renderer {
 
     void renderPage(CharSequence source) {
         final List<ImageInfo> info = scanForImageInfo(source);
-        CompletionService<ImageData> completionService =
-                new ExecutorCompletionService<>(executor);
-        for (final ImageInfo imageInfo : info)
+        CompletionService<ImageData> completionService = new ExecutorCompletionService<>(executor);
+
+        for (final ImageInfo imageInfo : info) {
             completionService.submit(imageInfo::downloadImage);
+        }
 
         renderText(source);
 
