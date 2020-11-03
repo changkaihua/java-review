@@ -41,6 +41,7 @@ public class NQueens {
         for (int column = 0; column < columns; column++) {
             // 剪支
             if (!isValid(board, row, column)) continue;
+
             board[row][column] = 'Q';
             backtrack(board, row + 1);
             board[row][column] = '.';

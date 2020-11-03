@@ -33,8 +33,8 @@ public class MinDepthBinaryTree {
     }
 
     public int minDepth(TreeNode root) {
-
         if (root == null) return 0;
+
         Queue<TreeNode> q = new ArrayDeque<>();
         q.offer(root);
         // root 本身就是一层，depth 初始化为 1
@@ -48,14 +48,10 @@ public class MinDepthBinaryTree {
              */
             for (int i = 0; i < size; i++) {
                 TreeNode cur = q.poll();
-                /*
-                    判断是否到达终点
-                 */
+                /* 判断是否到达终点 */
                 if (cur.left == null && cur.right == null)
                     return depth;
-                /*
-                    将 cur 的相邻节点加入队列
-                 */
+                /* 将 cur 的相邻节点加入队列 */
                 if (cur.left != null)
                     q.offer(cur.left);
                 if (cur.right != null)
