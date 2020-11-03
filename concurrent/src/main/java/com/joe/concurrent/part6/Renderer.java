@@ -21,6 +21,7 @@ public abstract class Renderer {
 
     void renderPage(CharSequence source) {
         final List<ImageInfo> info = scanForImageInfo(source);
+        // CompletionService: 以异步的方式一边生产新的任务，一边处理已完成任务的结果，这样可以将执行任务与处理任务分离开来进行处理
         CompletionService<ImageData> completionService = new ExecutorCompletionService<>(executor);
 
         for (final ImageInfo imageInfo : info) {
@@ -29,8 +30,11 @@ public abstract class Renderer {
 
         renderText(source);
 
+
         try {
             for (int t = 0, n = info.size(); t < n; t++) {
+                // take()方法取得最先完成任务的Future对象，谁执行时间最短谁最先返回, 会阻塞
+                // waiting if none are yet present
                 Future<ImageData> f = completionService.take();
                 ImageData imageData = f.get();
                 renderImage(imageData);
