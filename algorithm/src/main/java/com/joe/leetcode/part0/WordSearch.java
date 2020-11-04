@@ -31,8 +31,8 @@ public class WordSearch {
 
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < columns; j++) {
-                if (dfs(board, words, i, j, 0)) return true;
-//                if (backtrack(board, visited, i, j, words, 0)) return true;
+//                if (dfs(board, words, i, j, 0)) return true;
+                if (backtrack(board, visited, i, j, words, 0)) return true;
             }
         }
         // 最后也没找到答案
@@ -42,6 +42,7 @@ public class WordSearch {
     private boolean dfs(char[][] board, char[] word, int i, int j, int k) {
         if (i >= board.length || i < 0 || j >= board[0].length || j < 0 || board[i][j] != word[k]) return false;
         if (k == word.length - 1) return true;
+
         // 做选择
         char temp = word[k];
         board[i][j] = '/';
@@ -80,7 +81,9 @@ public class WordSearch {
         // left , up, right, down
         int[][] paths = {{0, -1}, {-1, 0}, {0, 1}, {1, 0}};
         for (int[] path : paths) {
+
             int newI = i + path[0], newJ = j + path[1];
+
             if (newI >= 0 && newI < board.length && newJ >= 0 && newJ < board[0].length) {
                 // 剪支
                 if (!visited[newI][newJ]) {
