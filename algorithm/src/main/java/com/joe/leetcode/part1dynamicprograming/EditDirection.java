@@ -140,7 +140,6 @@ public class EditDirection {
                     '}';
         }
     }
-
     enum Choice {
         SKIP(1),
         INSERT(2),
@@ -169,8 +168,6 @@ public class EditDirection {
         for (int j = 1; j <= n; j++) {
             dp[0][j] = new Node(j, Choice.INSERT);
         }
-
-        // 自底向上求解
         for (int i = 1; i <= m; i++)
             for (int j = 1; j <= n; j++)
                 if (s1[i - 1] == s2[j - 1]) {
