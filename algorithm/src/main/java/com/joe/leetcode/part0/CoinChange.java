@@ -24,6 +24,7 @@ public class CoinChange {
             // 遍历所有选择, 求最小值
             for (int coin : coins) {
                 if ((i - coin) < 0) continue;
+                // 1 + dp[i - coin], i-coin 面值的钱 + coin面值 , 就是 i 面值
                 dp[i] = Math.min(dp[i], 1 + dp[i - coin]);
             }
         }
