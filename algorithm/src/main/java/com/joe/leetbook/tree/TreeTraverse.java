@@ -1,6 +1,4 @@
-package com.joe.leetcode.tree;
-
-import sun.reflect.generics.tree.Tree;
+package com.joe.leetbook.tree;
 
 import java.util.*;
 
@@ -8,8 +6,7 @@ import java.util.*;
  * @author ckh
  * @create 11/5/20 7:53 PM
  */
-public class Traverse {
-
+public class TreeTraverse {
 
     /**
      * 使用迭代实现
@@ -123,33 +120,14 @@ public class Traverse {
         return res;
     }
 
-    static class TreeNode {
-        int val;
-        TreeNode left;
-        TreeNode right;
-
-        TreeNode() {
-        }
-
-        TreeNode(int val) {
-            this.val = val;
-        }
-
-        TreeNode(int val, TreeNode left, TreeNode right) {
-            this.val = val;
-            this.left = left;
-            this.right = right;
-        }
-    }
-
 
     public static void main(String[] args) {
         TreeNode root = new TreeNode(1);
         root.left = null;
         root.right = new TreeNode(2, new TreeNode(3), null);
 
-        Traverse traverse = new Traverse();
-        System.out.println(traverse.inorderTraversal(root));
+        TreeTraverse treeTraverse = new TreeTraverse();
+        System.out.println(treeTraverse.inorderTraversal(root));
 //        System.out.println(list);
     }
 }
