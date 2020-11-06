@@ -185,6 +185,7 @@ public class EditDirection {
                     } else if (min == editStep) {
                         dp[i][j] = new Node(min + 1, Choice.EDIT);
                     }
+
                 }
 
         for (Node[] nodes : dp) {

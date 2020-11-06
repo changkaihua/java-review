@@ -16,19 +16,20 @@ public class RobotScope {
     public int movingCount(int m, int n, int k) {
 
         int count = 0;
-        boolean[][] visited = new boolean[m][n];
         Queue<int[]> queue = new ArrayDeque<>();
+        boolean[][] visited = new boolean[m][n];
 
         // x, y, 数位和
         queue.add(new int[]{0, 0, 0});
         while (queue.size() > 0) {
             int[] x = queue.poll();
             int i = x[0], j = x[1], sum = x[2];
+
             if (i >= m || j >= n || k < sum || visited[i][j]) continue;
             visited[i][j] = true;
-            count++;
             queue.add(new int[]{i + 1, j, getSum(i + 1, j)});
             queue.add(new int[]{i, j + 1, getSum(i, j + 1)});
+            count++;
         }
         return count;
     }
@@ -110,7 +111,7 @@ public class RobotScope {
 
     public static void main(String[] args) {
         RobotScope scope = new RobotScope();
-        int count = scope.movingCount(35, 35, 4);
+        int count = scope.movingCount(35, 35, 18);
         System.out.println(count);
     }
 }

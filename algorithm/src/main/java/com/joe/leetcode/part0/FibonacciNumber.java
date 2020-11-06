@@ -39,7 +39,7 @@ public class FibonacciNumber {
 
     @Test
     public void testFib2() {
-        int i = fib2(6);
+        int i = fib2(45);
         System.out.println(i);
     }
 
@@ -61,6 +61,7 @@ public class FibonacciNumber {
      * 状态压缩
      */
     int fib4(int n) {
+        if (n < 1) return 0;
         if (n == 2 || n == 1) return 1;
         int prev = 1, curr = 1;
         for (int i = 3; i <= n; i++) {
