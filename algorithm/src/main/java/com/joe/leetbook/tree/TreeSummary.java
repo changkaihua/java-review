@@ -27,6 +27,7 @@ public class TreeSummary {
 
         TreeNode root = new TreeNode(temp[pRootIdx]);
         int indexOfRootInInorder = infixDirectory.get(temp[pRootIdx]);
+
         root.left = postRecur(pRootIdx - (inRightIdx - indexOfRootInInorder) - 1,
                 inLeftIdx,
                 indexOfRootInInorder - 1);

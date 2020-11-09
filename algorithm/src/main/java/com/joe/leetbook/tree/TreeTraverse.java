@@ -102,6 +102,7 @@ public class TreeTraverse {
     public List<List<Integer>> levelOrder(TreeNode root) {
         List<List<Integer>> res = new ArrayList<>();
         if (root == null) return res;
+        // ArrayDeque 不能存放 null 值
         Queue<TreeNode> queue = new ArrayDeque<>();
         queue.offer(root);
 
