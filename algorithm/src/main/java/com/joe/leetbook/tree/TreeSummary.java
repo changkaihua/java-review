@@ -66,9 +66,9 @@ public class TreeSummary {
     @Test
     public void test() {
         int[] inorder = {9, 3, 15, 20, 7};
-        int[] postorder = {9, 15, 7, 20, 3};
+        int[] postOrder = {9, 15, 7, 20, 3};
 
-        TreeNode treeNode = postBuildTree(inorder, postorder);
+        TreeNode treeNode = postBuildTree(inorder, postOrder);
 
     }
 }

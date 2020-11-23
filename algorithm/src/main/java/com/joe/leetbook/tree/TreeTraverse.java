@@ -30,10 +30,14 @@ public class TreeTraverse {
         return res;
     }
 
+    /**
+     * 迭代实现
+     */
     public List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> res = new ArrayList<>();
         if (root == null) return res;
         Deque<TreeNode> stack = new ArrayDeque<>();
+
         while (root != null || !stack.isEmpty()) {
             while (root != null) {
                 stack.push(root);

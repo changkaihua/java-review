@@ -12,6 +12,11 @@ import java.util.Queue;
  */
 public class TreeRecursion {
 
+    /**
+     * 树的最大深度
+     * @param root
+     * @return
+     */
     public int maxDepth(TreeNode root) {
         if (root == null) return 0;
         int left = maxDepth(root.left);
@@ -19,6 +24,9 @@ public class TreeRecursion {
         return Math.max(left, right) + 1;
     }
 
+    /**
+     * 判断是否为对称二叉树
+     */
     public boolean isSymmetric(TreeNode root) {
         if (root == null) return true;
         Queue<TreeNode> queue = new LinkedList<>();
@@ -55,6 +63,11 @@ public class TreeRecursion {
         return p.val == q.val && check(p.left, q.right) && check(p.right, q.left);
     }
 
+    /**
+     * 路径总和
+     * @param sum 目标和
+     * @return 判断该树中是否存在根节点到叶子节点的路径，这条路径上所有节点值相加等于目标和
+     */
     public boolean hasPathSum(TreeNode root, int sum) {
         if (root == null) return false;
         int temp = sum - root.val;

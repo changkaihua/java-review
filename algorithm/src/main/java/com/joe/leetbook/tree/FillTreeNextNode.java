@@ -38,6 +38,8 @@ public class FillTreeNextNode {
 
     /**
      * 只能基于完美二叉树
+     * CONNECTION 1 : 同一父节点 左子节点 -> 右子节点
+     * CONNECTION 2 : 不同父节点 右子节点 -> 左子结点
      */
     public Node connectMethod2(Node root) {
         if (root == null) return root;
