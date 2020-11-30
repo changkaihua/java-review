@@ -20,6 +20,20 @@ public class LowestCommonAncestor {
         return res;
     }
 
+    public TreeNode lowestCommonAncestorForSortTree(TreeNode root, TreeNode p, TreeNode q) {
+        TreeNode ans = root;
+        while (true) {
+            if (p.val < ans.val && q.val < ans.val) {
+                ans = ans.left;
+            } else if (p.val > ans.val && q.val > ans.val) {
+                ans = ans.right;
+            } else {
+                break;
+            }
+        }
+        return ans;
+    }
+
     private boolean dfs(TreeNode root, TreeNode p, TreeNode q) {
         if (root == null) return false;
         /*
@@ -71,7 +85,7 @@ public class LowestCommonAncestor {
                 new TreeNode(5, new TreeNode(6), new TreeNode(2, new TreeNode(7), new TreeNode(4))),
                 new TreeNode(1, new TreeNode(0), new TreeNode(8)));
 
-        TreeNode treeNode = lowestCommonAncestorMethod2(root, new TreeNode(5), new TreeNode(4));
+        TreeNode treeNode = lowestCommonAncestor(root, new TreeNode(5), new TreeNode(4));
 
         System.out.println(treeNode);
     }
