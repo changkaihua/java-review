@@ -17,17 +17,10 @@ public class UniqueBinarySearchTrees {
         if (n == 0) {
             return new LinkedList<>();
         }
-        return helper(1, n);
+        return generateTree(1, n);
     }
 
-    /**
-     * 二叉搜索树
-     * 1, ..., i, ..., n
-     * 如果 根 为 i, 则 左子树为 1 ~ i-1, 右子树 为 i+1 ~ n
-     * <p>
-     * 使用递归
-     */
-    public List<TreeNode> helper(int start, int end) {
+    public List<TreeNode> generateTree(int start, int end) {
         List<TreeNode> allTrees = new LinkedList<>();
         if (start > end) {
             // 这句很关键, 保证叶子节点的初始化
@@ -37,8 +30,8 @@ public class UniqueBinarySearchTrees {
             return allTrees;
         }
         for (int i = start; i <= end; i++) {
-            List<TreeNode> leftTrees = helper(start, i - 1);
-            List<TreeNode> rightTrees = helper(i + 1, end);
+            List<TreeNode> leftTrees = generateTree(start, i - 1);
+            List<TreeNode> rightTrees = generateTree(i + 1, end);
 
             for (TreeNode leftTree : leftTrees) {
                 for (TreeNode rightTree : rightTrees) {
@@ -49,7 +42,6 @@ public class UniqueBinarySearchTrees {
                 }
             }
         }
-
         return allTrees;
     }
 

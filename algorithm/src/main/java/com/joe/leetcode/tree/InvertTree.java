@@ -17,6 +17,25 @@ public class InvertTree {
         return root;
     }
 
+    public TreeNode invertTree2(TreeNode root) {
+        // base case
+        if (root == null) {
+            return null;
+        }
+
+        /* 前序遍历位置 */
+        // root 节点需要交换它的左右子节点
+        TreeNode tmp = root.left;
+        root.left = root.right;
+        root.right = tmp;
+
+        // 让左右子节点继续翻转它们的子节点
+        invertTree(root.left);
+        invertTree(root.right);
+
+        return root;
+    }
+
     @Test
     public void test() {
         TreeTraverse treeTraverse = new TreeTraverse();
