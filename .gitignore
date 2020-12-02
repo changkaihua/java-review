@@ -3,3 +3,10 @@
 /*.log
 /*.hprof
 */src/main/resources/lib/*
+.idea/
+algorithm/algorithm.iml
+algorithm/src/main/java/com/joe/leetbook/array/
+basic/basic.iml
+concurrent/concurrent.iml
+java-review.iml
+jvm/jvm.iml
