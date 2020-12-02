@@ -8,6 +8,7 @@ import com.joe.leetbook.tree.TreeNode;
  * @author ckh
  * @since 11/26/2020
  */
+@SuppressWarnings({"unused", "AlibabaLowerCamelCaseVariableNaming"})
 public class ConvertSortedArraySearchTree {
 
 
