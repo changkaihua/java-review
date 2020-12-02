@@ -18,27 +18,20 @@ public class FindDuplicateSubtree {
      * 记录所有子树以及出现的次数
      */
     HashMap<String, Integer> memo = new HashMap<>();
-
-    /**
-     * 记录重复的子树根节点
-     */
+    /** 记录重复的子树根节点  */
     LinkedList<TreeNode> res = new LinkedList<>();
-
     public List<TreeNode> findDuplicateSubtrees(TreeNode root) {
         traverse(root);
         return res;
     }
-
     /**
      * 通过序列化判断是否重复
      */
     private String traverse(TreeNode root) {
         if (root == null) {
-            return "#";
+            return "*";
         }
-
         String subTree = traverse(root.left) + "," + traverse(root.right) + "," + root.val;
-
         int count = memo.getOrDefault(subTree, 0);
         if (count == 1) {
             res.add(root);
@@ -49,21 +42,13 @@ public class FindDuplicateSubtree {
 
     // ================== approach 2 =========================
 
-    /**
-     * uid 序号
-     */
+    /** uid 序号 */
     int uidNum = 1;
-    /**
-     * 子树 -> uid
-     */
+    /** 子树 -> uid  */
     Map<String, Integer> trees;
-    /**
-     * uid -> count
-     */
+    /** uid -> count */
     Map<Integer, Integer> count;
-    /**
-     * result
-     */
+    /** result  */
     List<TreeNode> ans;
 
     public List<TreeNode> findDuplicateSubtrees2(TreeNode root) {
@@ -79,7 +64,6 @@ public class FindDuplicateSubtree {
      * x, y 为 左右子树的 uid
      * 如果为 null , uid = 0
      *
-     * @param node node
      * @return 该 node 的 uid
      */
     public int lookup(TreeNode node) {
@@ -88,7 +72,7 @@ public class FindDuplicateSubtree {
         }
         String serial = node.val + "," + lookup(node.left) + "," + lookup(node.right);
 
-        // computeIfAbsent 避免了重复计算, 如果之前计算过的组合, 这里就相当于记忆化了
+        // computeIfAbsent 避免了重复计算, 如果之前计算过的组合, 这里就相当于记忆化了??
         int uid = trees.computeIfAbsent(serial, key -> uidNum++);
         count.put(uid, count.getOrDefault(uid, 0) + 1);
         // 可能重复多次, 如果条件是 >1 则 ans 中出现重复的 node
