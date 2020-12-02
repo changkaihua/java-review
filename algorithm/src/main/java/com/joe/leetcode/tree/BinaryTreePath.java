@@ -15,8 +15,9 @@ import java.util.List;
 public class BinaryTreePath {
     public List<String> binaryTreePaths2(TreeNode root) {
         List<String> res = new LinkedList<>();
-        if (root == null)
+        if (root == null) {
             return res;
+        }
         // 到达叶子节点，把路径加入到集合中
         if (root.left == null && root.right == null) {
             res.add(root.val + "");
@@ -40,7 +41,9 @@ public class BinaryTreePath {
     }
 
     private void dfs(TreeNode root, String prefix, List<String> res) {
-        if (root == null) return;
+        if (root == null) {
+            return;
+        }
         // 使用 StringBuilder 优化 String 的拼接
         StringBuilder sb = new StringBuilder(prefix);
         sb.append(root.val);
@@ -56,7 +59,9 @@ public class BinaryTreePath {
 
 
     private void dfs2(TreeNode root, String prefix, List<String> res) {
-        if (root == null) return;
+        if (root == null) {
+            return;
+        }
         if (root.left == null && root.right == null) {
             res.add(prefix + root.val);
             return;

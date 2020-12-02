@@ -23,7 +23,9 @@ public class TreeSummary {
     }
 
     private TreeNode postRecur(int pRootIdx, int inLeftIdx, int inRightIdx) {
-        if (inLeftIdx > inRightIdx) return null;
+        if (inLeftIdx > inRightIdx) {
+            return null;
+        }
 
         TreeNode root = new TreeNode(temp[pRootIdx]);
         int indexOfRootInInorder = infixDirectory.get(temp[pRootIdx]);
@@ -48,7 +50,9 @@ public class TreeSummary {
     }
 
     private TreeNode preRecur(int preRootIdx, int inLeftIdx, int inRightIdx) {
-        if (inLeftIdx > inRightIdx) return null;
+        if (inLeftIdx > inRightIdx) {
+            return null;
+        }
         TreeNode root = new TreeNode(temp[preRootIdx]);
         int idxOfInorder = infixDirectory.get(temp[preRootIdx]);
 
