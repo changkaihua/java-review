@@ -1,6 +1,7 @@
 package com.joe.leetcode.tree;
 
 import com.joe.leetbook.tree.TreeNode;
+import com.sun.org.apache.bcel.internal.generic.GOTO;
 import org.junit.Test;
 
 import java.util.*;
@@ -18,12 +19,16 @@ public class FindDuplicateSubtree {
      * 记录所有子树以及出现的次数
      */
     HashMap<String, Integer> memo = new HashMap<>();
-    /** 记录重复的子树根节点  */
+    /**
+     * 记录重复的子树根节点
+     */
     LinkedList<TreeNode> res = new LinkedList<>();
+
     public List<TreeNode> findDuplicateSubtrees(TreeNode root) {
         traverse(root);
         return res;
     }
+
     /**
      * 通过序列化判断是否重复
      */
@@ -42,19 +47,30 @@ public class FindDuplicateSubtree {
 
     // ================== approach 2 =========================
 
-    /** uid 序号 */
+    /**
+     * uid 序号
+     */
     int uidNum = 1;
-    /** 子树 -> uid  */
+    /**
+     * 子树 -> uid
+     */
     Map<String, Integer> trees;
-    /** uid -> count */
-    Map<Integer, Integer> count;
-    /** result  */
+    /**
+     * uid -> count
+     */
+//    Map<Integer, Integer> count;
+    List<Integer> count;
+    /**
+     * result
+     */
     List<TreeNode> ans;
 
     public List<TreeNode> findDuplicateSubtrees2(TreeNode root) {
-        trees = new HashMap();
-        count = new HashMap();
-        ans = new ArrayList();
+        trees = new HashMap<>();
+        // count = new HashMap<>();
+        count = new ArrayList<>();
+        count.add(0);
+        ans = new ArrayList<>();
         lookup(root);
         return ans;
     }
@@ -74,7 +90,14 @@ public class FindDuplicateSubtree {
 
         // computeIfAbsent 避免了重复计算, 如果之前计算过的组合, 这里就相当于记忆化了??
         int uid = trees.computeIfAbsent(serial, key -> uidNum++);
-        count.put(uid, count.getOrDefault(uid, 0) + 1);
+//        count.put(uid, count.getOrDefault(uid, 0) + 1);
+
+        if (uid == count.size()) {
+            count.add(1);
+        } else {
+            count.set(uid, count.get(uid) + 1);
+        }
+
         // 可能重复多次, 如果条件是 >1 则 ans 中出现重复的 node
         if (count.get(uid) == 2) {
             ans.add(node);
