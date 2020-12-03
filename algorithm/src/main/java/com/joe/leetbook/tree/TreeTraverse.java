@@ -35,7 +35,9 @@ public class TreeTraverse {
      */
     public List<Integer> inorderTraversal(TreeNode root) {
         List<Integer> res = new ArrayList<>();
-        if (root == null) return res;
+        if (root == null) {
+            return res;
+        }
         Deque<TreeNode> stack = new ArrayDeque<>();
 
         while (root != null || !stack.isEmpty()) {
