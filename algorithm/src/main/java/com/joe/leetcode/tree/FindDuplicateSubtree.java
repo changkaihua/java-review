@@ -71,7 +71,7 @@ public class FindDuplicateSubtree {
         count = new ArrayList<>();
         count.add(0);
         ans = new ArrayList<>();
-        lookup(root);
+        lookupV2(root);
         return ans;
     }
 
@@ -105,6 +105,18 @@ public class FindDuplicateSubtree {
         return uid;
     }
 
+    public int lookupV2(TreeNode node) {
+        if (node == null) return 0;
+        String serial = node.val + "," + lookupV2(node.left) + "," + lookupV2(node.right);
+
+        int index = trees.computeIfAbsent(serial,
+                key -> {
+                    count.add(1);
+                    return count.size() - 1;
+                });
+        if (count.set(index, count.get(index) + 1) == 2) ans.add(node);
+        return index;
+    }
 
     @Test
     public void test() {
