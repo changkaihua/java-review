@@ -30,6 +30,7 @@ public class RecoverBinarySearchTree {
                 }
             }
         }
+
         swapTwoNodeVal(root, 2, x, y);
     }
 
@@ -37,9 +38,8 @@ public class RecoverBinarySearchTree {
         if (root != null) {
             if (root.val == x || root.val == y) {
                 root.val = root.val == x ? y : x;
-                if (--count == 0) {
-                    return;
-                }
+
+                if (--count == 0) return;
             }
             swapTwoNodeVal(root.right, count, x, y);
             swapTwoNodeVal(root.left, count, x, y);
