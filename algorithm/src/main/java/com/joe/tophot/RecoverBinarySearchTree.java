@@ -76,6 +76,21 @@ public class RecoverBinarySearchTree {
             }
             wrong2 = root;
         }
+        /*
+            a b c : a, b相邻,需要交换,
+            a...b c: a,b不相邻,要交换,
+            只要 a < c, 那么从 c后就不用判断了, 因为只有2个点错误, 后面都是正确的
+
+            1   3   2    4    6
+               w1  pri  root
+                   w2
+
+            2   8   7   6   14  15  18
+               w1      pri  root
+                       w2
+
+            也就是说, 当 wrong2 位置固定后, 然后判断其后的节点与 wrong1 的值大小
+         */
         if (prior != null && wrong2 == prior && wrong1.val < root.val) {
             return;
         }
@@ -88,20 +103,14 @@ public class RecoverBinarySearchTree {
     public void test() {
 //        TreeNode root = new TreeNode(3, new TreeNode(1),
 //                new TreeNode(4, new TreeNode(2), new TreeNode(6)));
-//        TreeNode root = new TreeNode(1, new TreeNode(3, null, new TreeNode(2)), null);
-//
+
         TreeNode root = new TreeNode(6,
                 new TreeNode(8, new TreeNode(2), new TreeNode(7)),
                 new TreeNode(15, new TreeNode(14), new TreeNode(18)));
 
 
         recoverTree(root);
-        /*
-         *
-         *           8
-         *       10        9
-         *      2 1       11   12
-         * */
+
     }
 
 
