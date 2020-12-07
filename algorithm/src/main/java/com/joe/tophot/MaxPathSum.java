@@ -9,12 +9,9 @@ import org.junit.Test;
  */
 public class MaxPathSum {
 
-    int max = 0;
+    int max = Integer.MIN_VALUE;
 
     public int maxPathSum(TreeNode root) {
-        if (root == null) {
-            return 0;
-        }
         helper(root);
         return max;
     }
