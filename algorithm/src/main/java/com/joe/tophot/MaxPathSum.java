@@ -7,6 +7,7 @@ import org.junit.Test;
  * @author ckh
  * @since 2020/12/7
  */
+@SuppressWarnings("ALL")
 public class MaxPathSum {
 
     int max = Integer.MIN_VALUE;
