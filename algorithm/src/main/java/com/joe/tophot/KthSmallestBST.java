@@ -5,9 +5,12 @@ import org.junit.Test;
 import sun.reflect.generics.tree.Tree;
 
 /**
+ * 230. 二叉搜索树中第K小的元素
+ *
  * @author ckh
  * @since 2020/12/7
  */
+@SuppressWarnings("ALL")
 public class KthSmallestBST {
 
     public int kthSmallest(TreeNode root, int k) {
