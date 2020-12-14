@@ -97,7 +97,6 @@ public class FindDuplicateSubtree {
         } else {
             count.set(uid, count.get(uid) + 1);
         }
-
         // 可能重复多次, 如果条件是 >1 则 ans 中出现重复的 node
         if (count.get(uid) == 2) {
             ans.add(node);
