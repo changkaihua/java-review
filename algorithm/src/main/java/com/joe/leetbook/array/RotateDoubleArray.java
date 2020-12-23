@@ -9,7 +9,7 @@ public class RotateDoubleArray {
     /**
      * 暴力
      */
-    public void rotateV1(int[][] matrix) {
+    public void V1(int[][] matrix) {
         int n = matrix.length;
         int[][] copy = new int[n][n];
         for (int row = 0; row < n; row++) {
@@ -27,7 +27,7 @@ public class RotateDoubleArray {
      * 先按主对角线反转, 再按每一行重点翻转
      * too trick
      */
-    public void rotateV2(int[][] matrix) {
+    public void V2(int[][] matrix) {
         int n = matrix.length;
         // 先以对角线（左上-右下）为轴进行翻转
         for (int i = 0; i < n - 1; i++) {
