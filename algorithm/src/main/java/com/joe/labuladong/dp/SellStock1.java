@@ -4,8 +4,7 @@ import org.junit.Test;
 
 /**
  * 121. 买卖股票的最佳时机
- * <p>
- * 只能买卖一次
+ * 只买卖一次
  *
  * @author ckh
  * @since 2020/12/28
@@ -40,9 +39,35 @@ public class SellStock1 {
     }
 
 
+    public int maxProfitV2(int[] prices) {
+        int[][] dp = new int[prices.length][2];
+        dp[0][0] = 0;
+        dp[0][1] = -prices[0];
+        for (int i = 1; i < prices.length; i++) {
+            dp[i][0] = Math.max(dp[i - 1][0], dp[i - 1][1] + prices[i]);
+            dp[i][1] = Math.max(dp[i - 1][1], -prices[i]);
+        }
+        return dp[prices.length - 1][0];
+    }
+
+    /**
+     * dp
+     */
+    public int maxProfitV3(int[] prices) {
+        int notStock = 0;
+        int haveStock = -prices[0];
+        for (int i = 1; i < prices.length; i++) {
+            notStock = Math.max(notStock, haveStock + prices[i]);
+            haveStock = Math.max(haveStock, -prices[i]);
+        }
+        return notStock;
+    }
+
+
     @Test
     public void test() {
         int[] prices = {7, 1, 5, 3, 6, 4};
-        System.out.println(maxProfitV0(prices) == maxProfitV1(prices));
+        System.out.println(maxProfitV2(prices));
+        System.out.println(maxProfitV3(prices));
     }
 }
