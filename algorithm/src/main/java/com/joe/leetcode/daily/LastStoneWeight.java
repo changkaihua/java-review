@@ -17,7 +17,6 @@ public class LastStoneWeight {
         for (int stone : stones) {
             pq.offer(stone);
         }
-
         while (pq.size() > 1) {
             // poll() offer() 的时间复杂度为 log n
             int a = pq.poll();
@@ -30,15 +29,15 @@ public class LastStoneWeight {
     }
 
     public int lastStoneWeightV2(int[] stones) {
-        int index = stones.length - 1;
-        for (int i = 0; i < index; i++) {
+        int idx = stones.length - 1;
+        for (int i = 0; i < idx; i++) {
             Arrays.sort(stones);
-            if (stones[index - 1] == 0) break;
-            stones[index] -= stones[index - 1];
+            if (stones[idx - 1] == 0) break;
+            stones[idx] -= stones[idx - 1];
             // 第二大的石头每次必然被销毁
-            stones[index - 1] = 0;
+            stones[idx - 1] = 0;
         }
-        return stones[index];
+        return stones[idx];
     }
 
 }
