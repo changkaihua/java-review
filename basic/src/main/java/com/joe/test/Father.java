@@ -1,5 +1,7 @@
 package com.joe.test;
 
+import java.util.Comparator;
+
 /**
  * @author ckh
  * @since 2020/12/17
@@ -18,6 +20,7 @@ public class Father {
 
     public Father() {
         System.out.println("Father Constructor");
+        Comparator<Integer> comparator = (a, b) -> "Raoul".length();
     }
 
 }

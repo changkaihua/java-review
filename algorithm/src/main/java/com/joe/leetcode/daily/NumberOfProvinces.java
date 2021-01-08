@@ -1,12 +1,15 @@
 package com.joe.leetcode.daily;
 
+import org.junit.Test;
+
 import java.util.LinkedList;
 import java.util.Queue;
 
 /**
  * 547. 省份数量
- *
+ * <p>
  * 并查集, 图搜索, DFS BFS
+ *
  * @author ckh
  * @since 2021/1/7
  */
@@ -69,5 +72,14 @@ public class NumberOfProvinces {
         return cnt;
     }
 
+
+    @Test
+    public void test() {
+        int[][] provinces = {
+                {1, 1, 0}, {1, 1, 0}, {0, 0, 1}
+        };
+
+        System.out.println(findCircleNumV1_DFS(provinces));
+    }
 
 }
