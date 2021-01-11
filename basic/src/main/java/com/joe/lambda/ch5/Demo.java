@@ -118,4 +118,9 @@ public class Demo {
         Optional<Transaction> minTransaction = transactions.stream()
                 .min(comparing(Transaction::getValue));
     }
+
+    @Test
+    public void test9(){
+
+    }
 }
