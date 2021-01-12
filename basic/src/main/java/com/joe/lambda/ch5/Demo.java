@@ -7,7 +7,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.IntSupplier;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.toList;
@@ -120,7 +123,42 @@ public class Demo {
     }
 
     @Test
-    public void test9(){
+    public void test9() {
+        Stream.iterate(0, n -> n + 2)
+                .limit(10)
+                .forEach(System.out::println);
 
+    }
+
+    /**
+     * 生成斐波那契
+     */
+    @Test
+    public void test10() {
+        // [0,1] 数列中的数字和其后序数字
+        Stream.iterate(new int[]{0, 1}, t -> new int[]{t[1], t[0] + t[1]})
+                .limit(20)
+                .forEach(t -> System.out.println("(" + t[0] + "," + t[1] + ")"));
+
+        System.out.println("================");
+        Stream.iterate(new int[]{0, 1}, t -> new int[]{t[1], t[0] + t[1]})
+                .limit(20)
+                .mapToInt(t -> t[0])
+                .forEach(System.out::println);
+        System.out.println("================");
+        IntSupplier fib = new IntSupplier() {
+            private int previous = 0;
+            private int current = 1;
+
+            @Override
+            public int getAsInt() {
+                int oldPrev = this.previous;
+                int next = this.previous + this.current;
+                this.previous = this.current;
+                this.current = next;
+                return oldPrev;
+            }
+        };
+        IntStream.generate(fib).limit(10).forEach(System.out::println);
     }
 }
