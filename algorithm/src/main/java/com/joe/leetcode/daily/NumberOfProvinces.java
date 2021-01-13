@@ -13,7 +13,13 @@ import java.util.Queue;
  * @author ckh
  * @since 2021/1/7
  */
+@SuppressWarnings("unused")
 public class NumberOfProvinces {
+
+    /**
+     * DFS
+     * 时间复杂度: O(n^2)
+     */
     public int findCircleNumV1_DFS(int[][] isConnected) {
         // int[][] isConnected 是无向图的邻接矩阵，n 为无向图的顶点数量
         int n = isConnected.length;
@@ -43,6 +49,9 @@ public class NumberOfProvinces {
         }
     }
 
+    /**
+     * O(n^2)
+     */
     public int findCircleNumV2_BFS(int[][] isConnected) {
         // int[][] isConnected 是无向图的邻接矩阵，n 为无向图的顶点数量
         int n = isConnected.length;
@@ -72,14 +81,54 @@ public class NumberOfProvinces {
         return cnt;
     }
 
+    public int findCircleNumV3(int[][] isConnected) {
+        int provinces = isConnected.length;
+
+        // init 并查集
+        int[] parent = new int[provinces];
+        for (int i = 0; i < provinces; i++) {
+            parent[i] = i;
+        }
+
+        // 根据邻接矩阵初始化并查集
+        for (int i = 0; i < provinces; i++) {
+            for (int j = i + 1; j < provinces; j++) {
+                if (isConnected[i][j] == 1) {
+                    union(parent, i, j);
+                }
+            }
+        }
+
+        int circles = 0;
+        for (int i = 0; i < provinces; i++) {
+            if (parent[i] == i) {
+                circles++;
+            }
+        }
+
+        return circles;
+    }
+
+    public int find(int[] parent, int index) {
+        if (parent[index] != index) {
+            parent[index] = find(parent, parent[index]);
+        }
+        return parent[index];
+    }
+
+    public void union(int[] parent, int index1, int index2) {
+        parent[find(parent, index1)] = find(parent, index2);
+    }
+
+
 
     @Test
     public void test() {
         int[][] provinces = {
-                {1, 1, 0}, {1, 1, 0}, {0, 0, 1}
+                {1, 1, 1}, {1, 1, 1}, {1, 1, 1}
         };
 
-        System.out.println(findCircleNumV1_DFS(provinces));
+        System.out.println(findCircleNumV3(provinces));
     }
 
 }
