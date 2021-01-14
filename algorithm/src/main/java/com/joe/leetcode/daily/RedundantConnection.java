@@ -57,6 +57,10 @@ public class RedundantConnection {
         };
         int[] connection = findRedundantConnection(edges);
         System.out.println("connection = " + Arrays.toString(connection));
+
+
+        int i = 0 % 5;
+        System.out.println("i = " + i);
     }
 
 }
