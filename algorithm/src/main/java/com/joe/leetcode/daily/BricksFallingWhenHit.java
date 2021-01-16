@@ -1,5 +1,8 @@
 package com.joe.leetcode.daily;
 
+import org.junit.Test;
+
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -167,4 +170,83 @@ public class BricksFallingWhenHit {
             return size[root];
         }
     }
+
+
+    // 标记与顶部相连
+    private static final int TOP = 2;
+    // 标记有砖块
+    private static final int BRICK = 1;
+    // 标记无砖块
+    private static final int EMPTY = 0;
+    private static final int[][] DIRS = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}};
+
+    public int[] hitBricksV2(int[][] grid, int[][] hits) {
+        int[] res = new int[hits.length];
+        // 移除所有hits位置的砖块
+        for (int[] hit : hits) {
+            grid[hit[0]][hit[1]]--;
+        }
+
+        // 把所有与top相连的标记为2
+        for (int i = 0; i < grid[0].length; i++) {
+            dfs(0, i, grid);
+        }
+
+        // Add back the hited Bricks
+        for (int i = hits.length - 1; i >= 0; i--) {
+            int x = hits[i][0], y = hits[i][1];
+            grid[x][y]++;
+            // 加回去之后的情况为0或1，为1说明原来这里确实有砖块
+            if (grid[x][y] == BRICK && isConnected(x, y, grid)) {
+                // 当前位置有砖块，而且与顶部相连，做dfs
+                res[i] = dfs(x, y, grid) - 1;
+            }
+        }
+
+        return res;
+    }
+
+    private int dfs(int i, int j, int[][] grid) {
+        // grid[i][j] == BRICK 代表有砖块
+        if (i < 0 || i >= grid.length || j < 0 || j >= grid[0].length || grid[i][j] != BRICK) {
+            return 0;
+        }
+        grid[i][j] = 2;
+        return dfs(i + 1, j, grid)
+                + dfs(i - 1, j, grid)
+                + dfs(i, j + 1, grid)
+                + dfs(i, j - 1, grid) + 1;
+    }
+
+    // isConnected用来判断当前坐标是否和顶部相连
+    private boolean isConnected(int i, int j, int[][] grid) {
+        // 在第0行必然相连
+        if (i == 0) {
+            return true;
+        }
+        for (int[] d : DIRS) {
+            int x = i + d[0], y = j + d[1];
+            // 如果周围的四个点有与顶部相连的，那这个点也是与顶部相连的
+            if (x >= 0 && x < grid.length && y >= 0 && y < grid[0].length && grid[x][y] == TOP) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Test
+    public void test() {
+        int[][] grids = {
+                {1, 0, 0, 0},
+                {1, 1, 0, 0}
+        };
+        int[][] hits = {
+                {1, 1},
+                {1, 0}
+        };
+
+        int[] res = hitBricksV2(grids, hits);
+        System.out.println(Arrays.toString(res));
+    }
+
 }
