@@ -29,4 +29,13 @@ public class TreeNode {
                 "val=" + val +
                 '}';
     }
+
+    public static void print(TreeNode root) {
+        if (root != null) {
+            print(root.left);
+            System.out.print(" " + root.val + " ");
+            print(root.right);
+        }
+
+    }
 }
