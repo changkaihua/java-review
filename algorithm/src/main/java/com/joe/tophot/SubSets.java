@@ -21,21 +21,25 @@ public class SubSets {
     }
 
     private void dfs(int[] nums, int idx, List<Integer> path) {
+        // 这两种写法均可
         if (path.size() > nums.length) return;
+        // if (idx > nums.length) return;
         System.out.println("path = " + path);
+
         ans.add(new ArrayList<>(path));
+
         for (int i = idx; i < nums.length; i++) {
             path.add(nums[i]);
-            System.out.println("before: "+path);
+            System.out.println("before: " + path);
             dfs(nums, i + 1, path);
             path.remove(path.size() - 1);
-            System.out.println("after: "+path);
+            System.out.println("after: " + path);
         }
     }
 
     @Test
-    public void test(){
-        int[] nums = {1,2,3};
+    public void test() {
+        int[] nums = {1, 2, 3};
         System.out.println(subsets(nums));
     }
 
